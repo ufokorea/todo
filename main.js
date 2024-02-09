@@ -8,10 +8,22 @@
 
 let taskclick = document.getElementById("task-click");
 let taskitem = document.getElementById("task-item");
+let clicknav = document.querySelectorAll(".task-nav div");
+let mode = "all";
 let itemlist=[];
 let chklist=[];
+let list = [];
+
 
 taskclick.addEventListener("click",puttask);
+
+
+
+for(i=0; i < clicknav.length; i++) {
+    clicknav[i].addEventListener("click",function (event) {
+        filter(event);
+    })
+}
 
 function puttask() {
 
@@ -24,28 +36,53 @@ function puttask() {
 
     itemlist.push(tasklist)
 
+    document.getElementById("task-item").value = null;
+    
     render();
 }
 
 function render() {
+console.log(mode)
+    if (mode === "all") {
+        list = itemlist;
+
+    } else if (mode === "ongoing" ) {
+        chklist.length=0;
+        
+        for(let i=0;i < itemlist.length;i++){
+            if(itemlist[i].isComplete === false) {
+                chklist.push(itemlist[i]); 
+            }
+        }
+        list = chklist;
+
+    } else if (mode === "done" ) {
+
+        chklist.length=0;        
+        for(let i=0;i < itemlist.length;i++){
+            if(itemlist[i].isComplete === true) {
+                chklist.push(itemlist[i]); 
+            }
+        }
+        list = chklist;
+    } 
 
     let putHtml='';
-    for(let i=0; i < itemlist.length; i++){
+    for(let i=0; i < list.length; i++){
 
-        putHtml += `<div class="task-item${itemlist[i].isComplete}"><div>${itemlist[i].item}</div><div>
-        <button onclick="checkitem('${itemlist[i].id}')">완료여부</button>
-        <button onclick="deleitem('${itemlist[i].id}')">삭제</button></div></div>`;
+        putHtml += `<div class="task-item${list[i].isComplete}"><div>${list[i].item}</div><div>
+        <button onclick="checkitem('${list[i].id}')">완료여부</button>
+        <button onclick="deleitem('${list[i].id}')">삭제</button></div></div>`;
     }
 
     document.getElementById("putitem").innerHTML=putHtml;    
 }
 
 function checkitem(chkid) {
-
+ 
     for(let i=0; i < itemlist.length; i++){
         if(itemlist[i].id === chkid) {
             itemlist[i].isComplete = !itemlist[i].isComplete;
-            chklist.push(itemlist[i]);
             break;
         }
     }
@@ -54,14 +91,23 @@ function checkitem(chkid) {
 }
 
 function deleitem(chkid) {
-console.log(chkid)
 
     for(let i=0; i < itemlist.length; i++){
         if(itemlist[i].id === chkid) {
+            list.push(itemlist[i]); 
             itemlist.splice(i,1);
             break;
         }
     }
- 
+    
     render();
 }
+
+function filter(event) {
+  
+    mode = event.target.id;
+
+    render();
+
+}
+
