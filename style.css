@@ -1,0 +1,20 @@
+.task-itemfalse{
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-itemtrue{
+    display: flex;
+    justify-content: space-between;
+    text-decoration:line-through;
+    background-color: gray;
+}
+
+.container{
+    width:500px;
+}
