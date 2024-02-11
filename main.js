@@ -32,10 +32,12 @@ for(i=1; i < clicknav.length; i++) {
 function puttask() {
 
     let item = taskitem.value;
+    const color = document.getElementById("task-color").value;
     let tasklist = {
         id : Math.random().toString(36).substring(2, 18),
         item : item,
-        isComplete: false
+        isComplete: false,
+        color: color 
     }
 
     itemlist.push(tasklist)
@@ -57,8 +59,9 @@ function render() {
 
     let putHtml='';
     for(let i=0; i < list.length; i++){
+        let taskStyle = `style="background-color: ${list[i].color};"`;
         if(list[i].isComplete === false) {
-            putHtml += `<div class="task-itemfalse"><div>${list[i].item}</div><div>
+            putHtml += `<div class="task-itemfalse" ${taskStyle}><div>${list[i].item}</div><div>
             <button onclick="checkitem('${list[i].id}')"><i class="fa-solid fa-check"></i></button>
             <button onclick="deleitem('${list[i].id}')"><i class="fa-solid fa-trash"></i></button></div></div>`;
         } else if(list[i].isComplete === true) {

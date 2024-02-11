@@ -15,24 +15,30 @@
   </head>
   <body>
     <div class="container">
-      <h1>ToDo List</h1>
-      <div >
-        <input type="text" id="task-item" placeholder="오늘 할 일은?" />
-        <button id="task-click">+
-        </button>
-      </div>
-      <div class="task-area">
-        <div class="task-nav">
-          <div id="underline"></div>
-          <div id="all">모두</div>
-          <div id="ongoing">진행중</div>
-          <div id="done">완료</div>
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <h1>ToDo List</h1>
+          <div >
+            <input type="text" id="task-item" placeholder="오늘 할 일은?" />
+            <input type="color" id="task-color" />
+            <button id="task-click">+
+            </button>
+          </div>
+          <div class="task-area">
+            <div class="task-nav">
+              <div id="underline"></div>
+              <div id="all">모두</div>
+              <div id="ongoing">진행중</div>
+              <div id="done">완료</div>
+            </div>
+      
+            <div id="putitem">
+    
+            </div>
+          </div>
         </div>
-  
-        <div id="putitem">
+      </div>
 
-        </div>
-      </div>
     </div>
 
     <script src="https://kit.fontawesome.com/621270f1c9.js" crossorigin="anonymous"></script>
