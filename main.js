@@ -7,6 +7,7 @@
 // 모바일 버전에서도 확인할 수 있는 반응형 웹이다
 
 let taskclick = document.getElementById("task-click");
+let underline = document.getElementById("underline");
 let taskitem = document.getElementById("task-item");
 let clicknav = document.querySelectorAll(".task-nav div");
 let mode = "all";
@@ -14,14 +15,17 @@ let itemlist=[];
 let chklist=[];
 let list = [];
 
-
 taskclick.addEventListener("click",puttask);
 
+for(i=1; i < clicknav.length; i++) {
+    clicknav[i].addEventListener("click",(event) => {
 
-
-for(i=0; i < clicknav.length; i++) {
-    clicknav[i].addEventListener("click",function (event) {
-        filter(event);
+        underline.style.left=event.currentTarget.offsetLeft + "px";
+        underline.style.width=event.currentTarget.offsetwidth + "px";
+        underline.style.top=event.currentTarget.offsetTop + event.currentTarget.offsetHeight - 4 + "px";
+        
+        mode = event.target.id;
+        render();
     })
 }
 
@@ -42,37 +46,26 @@ function puttask() {
 }
 
 function render() {
-console.log(mode)
+
     if (mode === "all") {
         list = itemlist;
-
-    } else if (mode === "ongoing" ) {
-        chklist.length=0;
-        
-        for(let i=0;i < itemlist.length;i++){
-            if(itemlist[i].isComplete === false) {
-                chklist.push(itemlist[i]); 
-            }
-        }
-        list = chklist;
-
-    } else if (mode === "done" ) {
-
-        chklist.length=0;        
-        for(let i=0;i < itemlist.length;i++){
-            if(itemlist[i].isComplete === true) {
-                chklist.push(itemlist[i]); 
-            }
-        }
-        list = chklist;
-    } 
+    } else if (mode === "ongoing") {
+        list = itemlist.filter((task) => task.isComplete === false);
+    } else if (mode === "done") {
+        list = itemlist.filter((task) => task.isComplete === true);
+    }
 
     let putHtml='';
     for(let i=0; i < list.length; i++){
-
-        putHtml += `<div class="task-item${list[i].isComplete}"><div>${list[i].item}</div><div>
-        <button onclick="checkitem('${list[i].id}')">완료여부</button>
-        <button onclick="deleitem('${list[i].id}')">삭제</button></div></div>`;
+        if(list[i].isComplete === false) {
+            putHtml += `<div class="task-itemfalse"><div>${list[i].item}</div><div>
+            <button onclick="checkitem('${list[i].id}')"><i class="fa-solid fa-check"></i></button>
+            <button onclick="deleitem('${list[i].id}')"><i class="fa-solid fa-trash"></i></button></div></div>`;
+        } else if(list[i].isComplete === true) {
+            putHtml += `<div class="task-itemtrue"><div>${list[i].item}</div><div>
+            <button onclick="checkitem('${list[i].id}')"><i class="fa-solid fa-rotate-left"></i></button>
+            <button onclick="deleitem('${list[i].id}')"><i class="fa-solid fa-trash"></i></button></div></div>`;            
+        }
     }
 
     document.getElementById("putitem").innerHTML=putHtml;    
@@ -94,7 +87,6 @@ function deleitem(chkid) {
 
     for(let i=0; i < itemlist.length; i++){
         if(itemlist[i].id === chkid) {
-            list.push(itemlist[i]); 
             itemlist.splice(i,1);
             break;
         }
@@ -102,12 +94,3 @@ function deleitem(chkid) {
     
     render();
 }
-
-function filter(event) {
-  
-    mode = event.target.id;
-
-    render();
-
-}
-

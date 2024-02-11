@@ -1,15 +1,12 @@
+body{
+    margin: 0px;
+}
+
 .task-itemfalse{
     display: flex;
     justify-content: space-between;
-}
-
-.task-item{
-    display: flex;
-    justify-content: space-between;
-}
-
-.task-nav{
-    display: flex;
+    border-bottom: 1px dotted gray;
+    padding: 10px;    
 }
 
 .task-itemtrue{
@@ -17,8 +14,48 @@
     justify-content: space-between;
     text-decoration:line-through;
     background-color: gray;
+    border-bottom: 1px solid gray;
+    padding: 10px;
+}
+
+.task-area{
+    border: 1px solid gray;
+    margin-top: 10px;
+}
+
+.task-nav{
+    display: flex;
+    border: 1px solid gray;
+    position: relative;
+
+}
+.task-nav:hover{
+    cursor: pointer;
+}
+.task-nav div {
+    display: flex;
+    padding: 1em;
+
+}
+
+.topline{
+    border: 1px solid gray;
 }
 
 .container{
     width:500px;
+    height: 100vh;
+    background-color: beige;
+    border: 1px solid gray;
+}
+
+#underline{
+    height: 4px;
+    background-color: green;
+    position: absolute;
+    width:60px;
+    left:0px;
+    top:52px;
+    padding: 0px;
+    transition: 0.5s;
 }
