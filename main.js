@@ -32,7 +32,7 @@ for(i=1; i < clicknav.length; i++) {
 function puttask() {
 
     let item = taskitem.value;
-    
+
     if(item != "") {        
         const color = document.getElementById("task-color").value;        
         let tasklist = {
@@ -63,9 +63,14 @@ function render() {
     let putHtml='';
     for(let i=0; i < list.length; i++){
         let taskStyle = `style="background-color: ${list[i].color};"`;
-            putHtml += `<div class="task-item${list[i].isComplete}" ${taskStyle}><div>${list[i].item}</div><div>
-            <button onclick="checkitem('${list[i].id}')">${list[i].isComplete ? "<i class='fa-solid fa-rotate-left'></i>" :"<i class='fa-solid fa-check'></i>"}</button>
-            <button onclick="deleitem('${list[i].id}')"><i class="fa-solid fa-trash"></i></button></div></div>`;            
+if(list[i].isComplete === false) {
+            putHtml += `<div class="task-itemfalse" ${taskStyle}><div>${list[i].item}</div><div>
+            <button onclick="checkitem('${list[i].id}')"><i class="fa-solid fa-check"></i></button>
+            <button onclick="deleitem('${list[i].id}')"><i class="fa-solid fa-trash"></i></button></div></div>`;
+        } else if(list[i].isComplete === true) {
+            putHtml += `<div class="task-itemtrue"><div>${list[i].item}</div><div>
+            <button onclick="checkitem('${list[i].id}')"><i class="fa-solid fa-rotate-left"></i></button>
+            <button onclick="deleitem('${list[i].id}')"><i class="fa-solid fa-trash"></i></button></div></div>`;             
     }
 
     document.getElementById("putitem").innerHTML=putHtml;    
