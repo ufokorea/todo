@@ -33,8 +33,9 @@ function puttask() {
 
     let item = taskitem.value;
 
-    if(item != "") {        
-        const color = document.getElementById("task-color").value;        
+    if (item !="") {
+
+        const color = document.getElementById("task-color").value;
         let tasklist = {
             id : Math.random().toString(36).substring(2, 18),
             item : item,
@@ -73,6 +74,8 @@ function render() {
             <button onclick="deleitem('${list[i].id}')"><i class="fa-solid fa-trash"></i></button></div></div>`;            
         }
     }
+
+    document.getElementById("putitem").innerHTML=putHtml;    
 }
 
 function checkitem(chkid) {
