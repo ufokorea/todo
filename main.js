@@ -63,7 +63,7 @@ function render() {
     let putHtml='';
     for(let i=0; i < list.length; i++){
         let taskStyle = `style="background-color: ${list[i].color};"`;
-            putHtml += `<div class="task-item${list[i].isComplete}"><div>${list[i].item}</div><div>
+            putHtml += `<div class="task-item${list[i].isComplete}" ${taskStyle}><div>${list[i].item}</div><div>
             <button onclick="checkitem('${list[i].id}')">${list[i].isComplete ? "<i class='fa-solid fa-rotate-left'></i>" :"<i class='fa-solid fa-check'></i>"}</button>
             <button onclick="deleitem('${list[i].id}')"><i class="fa-solid fa-trash"></i></button></div></div>`;            
     }
