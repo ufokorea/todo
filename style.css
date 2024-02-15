@@ -10,12 +10,6 @@ body{
     border-bottom: 1px dotted gray;
     padding: 10px;    
 }
-.task-item{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;    
-}
-
 .task-itemtrue{
     display: flex;
     justify-content: space-between;
