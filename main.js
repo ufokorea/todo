@@ -33,7 +33,7 @@ function puttask() {
 
     let item = taskitem.value;
 
-    if (item !="") {
+    if (item != "" ) {
 
         const color = document.getElementById("task-color").value;
         let tasklist = {
@@ -65,7 +65,7 @@ function render() {
     for(let i=0; i < list.length; i++){
         let taskStyle = `style="background-color: ${list[i].color};"`;
         if(list[i].isComplete === false) {
-            putHtml += `<div class="task-itemfalse" ${taskStyle}><div>${list[i].item}</div><div>
+            putHtml += `<div class="task-item${list[i].isComplete}" ${taskStyle}><div>${list[i].item}</div><div>
             <button onclick="checkitem('${list[i].id}')"><i class="fa-solid fa-check"></i></button>
             <button onclick="deleitem('${list[i].id}')"><i class="fa-solid fa-trash"></i></button></div></div>`;
         } else if(list[i].isComplete === true) {

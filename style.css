@@ -19,11 +19,6 @@ body{
     padding: 10px;
 }
 
-.task-area{
-    border: 1px solid gray;
-    margin-top: 10px;
-}
-
 .task-nav{
     display: flex;
     border: 1px solid gray;
