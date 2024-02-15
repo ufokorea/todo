@@ -73,6 +73,7 @@ function render() {
             <button onclick="deleitem('${list[i].id}')"><i class="fa-solid fa-trash"></i></button></div></div>`;            
         }
     }
+}
 
 function checkitem(chkid) {
  
